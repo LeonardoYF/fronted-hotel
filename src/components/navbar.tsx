@@ -21,14 +21,12 @@ import { Badge, Avatar } from "@material-tailwind/react";
 const NAV_MENU = [
   "Home",
   "Habitaciones",
-  "Reserva",
   "Informacion",
   "Contactanos",
 ];
 const NAV_LINKS = [
   "/home",
   "/home/habitaciones",
-  "/home/reservas",
   "/home/informacion",
   "/home/contactanos",
 ];

@@ -23,9 +23,8 @@ const Login = () => {
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     try {
-      const usuario = await iniciarSesion(email, password);
+      await iniciarSesion(email, password);
       router.push("/home");
     } catch (error) {
       setError("Error al iniciar sesión. Verifica tus credenciales.");

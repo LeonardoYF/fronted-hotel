@@ -8,18 +8,25 @@ import {
   Button,
   IconButton,
 } from "@material-tailwind/react";
-
+import Link from 'next/link';
 interface HabitacionData {
   id: number;
   name: string;
   precio: number;
-  categoria_id: number;
+  categoria: {
+    id: number;
+    name: string;
+    estado: number;
+    created_at: string;
+    updated_at: string;
+  };
   nivel_id: number;
   detalle_id: number;
   active: number;
   estado: number;
   created_at: string;
   updated_at: string;
+  cantidad: number; // Nuevo campo para indicar la cantidad de habitaciones a reservar
 }
 
 interface HabitacionProps {
@@ -80,8 +87,11 @@ const Habitacion: React.FC<HabitacionProps> = ({ habitacion }) => {
         </Typography>
       </CardBody>
       <CardFooter className="pt-3">
-        <Button size="lg" fullWidth={true}>
+        <Button color="green" size="lg" fullWidth={true}>
+          <Link href="/home/reservacion">
           Reservar
+          </Link>
+          
         </Button>
       </CardFooter>
     </Card>

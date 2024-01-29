@@ -10,7 +10,8 @@ export const useHabitacion = ({ middleware, redirectIfAuthenticated } = {}) => {
 
   const csrf = () => axios.get("/sanctum/csrf-cookie");
     
-  const indexHabitacion = async () => {
+  const indexReservacion = async () => {
+    await csrf()
     try {
       const response = await axios.get("/api/habitacions");
       return response.data;
@@ -20,21 +21,20 @@ export const useHabitacion = ({ middleware, redirectIfAuthenticated } = {}) => {
     }
   };
 
-  const getHabitaciones = async (props) => {
-    try {
-      const response = await axios.post("/api/habitaciones", props);
-      const {habitaciones, categorias, detalles} = response.data;
-      return {habitaciones, categorias, detalles};
-    } catch (error) {
-      console.error("Error al extraer habitaciones", error);
-      throw error;
-    }
-  }; 
+  
 
- 
+  useEffect(() => {
+    if (middleware === "guest" && redirectIfAuthenticated && user) {
+      router.push(redirectIfAuthenticated);
+    }
+
+    if (middleware === "auth" && error) {
+      logout();
+    }
+  }, [user, error]);
 
   return {
-    indexHabitacion,
-    getHabitaciones
+    user,
+    indexHabitacion
   };
 };

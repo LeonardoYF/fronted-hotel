@@ -12,3 +12,5 @@ export * from "./simple-blog-card";
 export * from "./fixed-plugin";
 export * from "./login";	
 export * from "./carrusel";
+export * from "./form-client";
+export * from "./reserva";
