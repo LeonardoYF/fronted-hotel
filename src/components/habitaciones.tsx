@@ -63,7 +63,7 @@ const Habitaciones = () => {
           <h2 className="text-center font-bold">Filtrar Habitaciones</h2>
         </Typography>
 
-        <form onSubmit={filtrarHabitaciones} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mx-auto flex p-10">
+        <form onSubmit={filtrarHabitaciones} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 mx-auto flex p-10">
           <Input
             variant="standard"
             label="Nombre"
@@ -71,8 +71,9 @@ const Habitaciones = () => {
             value={filtroNombre}
             onChange={(e) => setFiltroNombre(e.target.value)}
           />
+          
           <div>
-            <select  value={filtroCategoria} className="border rounded-lg p-2 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out w-full sm:w-auto" onChange={(e)=>setFiltroCategoria(e.target.value)}>
+          <select  value={filtroCategoria} className="border rounded-lg p-2 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out w-full sm:w-auto" onChange={(e)=>setFiltroCategoria(e.target.value)}>
             {categorias.map((categoria) => (
                 <option key={categoria.id} value={categoria.id}>
                   {categoria.name}
@@ -80,15 +81,18 @@ const Habitaciones = () => {
               ))}
               
             </select>
-           
-          </div>
-          <div>
           <select  value={filtroDetalle} className="border rounded-lg p-2 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out w-full sm:w-auto" onChange={(e)=>setFiltroDetalle(e.target.value)}>
             {detalles.map((detalle) => (
                 <option key={detalle.id} value={detalle.id}>
                 {detalle.name}
               </option>
               ))}
+              
+            </select>
+            <select  value={filtroDetalle} className="border rounded-lg p-2 focus:outline-none focus:border-blue-500 transition duration-300 ease-in-out w-full sm:w-auto" onChange={(e)=>setFiltroDetalle(e.target.value)}>
+              <option>Menor a S/.50</option>
+              <option>Menor a S/.100</option>
+              <option>Mayor a S/.100</option>
               
             </select>
             

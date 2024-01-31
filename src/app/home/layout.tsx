@@ -4,6 +4,7 @@ import { Roboto } from "next/font/google";
 import { Layout } from "@/components/layout";
 import { Footer } from "@/components";
 import Navbar from "@/components/navbar";
+import {HabitacionProvider} from '@/context/useHabitacion'
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -28,8 +29,9 @@ export default function RootLayout({
 
         <Navbar />
         <Layout>
+          <HabitacionProvider>
           {children}
-          
+          </HabitacionProvider>
         </Layout>
         <Footer />
 

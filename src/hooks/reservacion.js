@@ -2,11 +2,26 @@ import axios from "@/lib/axios";
 import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 
-export const useHabitacion = ({ middleware, redirectIfAuthenticated } = {}) => {
+export const useReservacion = ({ middleware, redirectIfAuthenticated } = {}) => {
   const router = useRouter();
   const params = useParams();
 
   
+  const reservar = async (data) => {
+    await csrf()
+    try {
+        const response = await axios.post("/api/reservar", data);
+        if (response.status === 200) {
+            return { success: true, message: "Reserva exitosa" };
+        } else {
+            throw new Error("La reserva falló. Por favor, inténtalo de nuevo.");
+        }
+    } catch (error) {
+        console.error("Error al reservar la habitación", error);
+        throw error;
+    }
+};
+
 
   const csrf = () => axios.get("/sanctum/csrf-cookie");
     
@@ -21,20 +36,13 @@ export const useHabitacion = ({ middleware, redirectIfAuthenticated } = {}) => {
     }
   };
 
+
   
 
-  useEffect(() => {
-    if (middleware === "guest" && redirectIfAuthenticated && user) {
-      router.push(redirectIfAuthenticated);
-    }
 
-    if (middleware === "auth" && error) {
-      logout();
-    }
-  }, [user, error]);
 
   return {
-    user,
-    indexHabitacion
+    reservar
+
   };
 };

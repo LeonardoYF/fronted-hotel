@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { useRouter } from 'next/navigation';
 import {
   Navbar as MTNavbar,
   Collapse,
@@ -50,13 +51,19 @@ function NavItem({ children, link }: NavItemProps) {
 
 export function Navbar() {
   const {logout} = useAuth()
+  const router = useRouter();
   const { user } = useUser();
   const [open, setOpen] = React.useState(false);
   const [isScrolling, setIsScrolling] = React.useState(false);
   function handleOpen() {
     setOpen((cur) => !cur);
   }
-
+  const handleLogin= () => {
+    router.push('/user/login');
+  }
+  const handleReserva = ()=>{
+    router.push('/home/habitaciones');
+  }
   React.useEffect(() => {
     window.addEventListener(
       "resize",
@@ -109,7 +116,7 @@ export function Navbar() {
           ))}
         </ul>
         <div className="hidden items-center gap-2 lg:flex">
-          <Button color={isScrolling ? "white" : "white"}>Reserva</Button>
+          <Button onClick={handleReserva} color={isScrolling ? "white" : "white"}>Reserva</Button>
           {user ? (
             <Menu
               animate={{
@@ -164,9 +171,8 @@ export function Navbar() {
             ))}
           </ul>
           <div className="mt-6 flex items-center gap-2">
-            <Button variant="text">Iniciar Sesion</Button>
-
-            <Button color="gray">Reserva</Button>
+            <Button onClick={handleLogin} variant="text">Iniciar Sesion</Button>
+            <Button onClick={handleReserva} color="gray">Reserva</Button>
           </div>
         </div>
       </Collapse>

@@ -1,4 +1,7 @@
+'use client'
 import React from 'react';
+import { useHabitacion } from '@/context/useHabitacion';
+import { useRouter } from 'next/navigation';
 import {
   Card,
   CardHeader,
@@ -34,6 +37,12 @@ interface HabitacionProps {
 }
 
 const Habitacion: React.FC<HabitacionProps> = ({ habitacion }) => {
+  const { insertarHabitacion } = useHabitacion();
+  const router = useRouter();
+  const handleInsertarHabitacion = () => {
+    insertarHabitacion(habitacion);
+    router.push('/home/reservacion');
+};
   return (
     <Card className="w-full max-w-[22rem] shadow-lg">
       <CardHeader floated={false} color="blue-gray">
@@ -87,11 +96,8 @@ const Habitacion: React.FC<HabitacionProps> = ({ habitacion }) => {
         </Typography>
       </CardBody>
       <CardFooter className="pt-3">
-        <Button color="green" size="lg" fullWidth={true}>
-          <Link href="/home/reservacion">
-          Reservar
-          </Link>
-          
+      <Button color="green" size="lg" fullWidth={true} onClick={handleInsertarHabitacion}>
+            Reservar
         </Button>
       </CardFooter>
     </Card>

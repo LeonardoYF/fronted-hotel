@@ -8,7 +8,7 @@ function Contactanos() {
             ¡Gracias por visitarnos! Si tienes alguna pregunta o comentario, no dudes en ponerte en contacto con nosotros.
           </p>
           <p className="text-base">
-            Puedes escribirnos a nuestro correo electrónico de soporte: <a href="mailto:leonardoyarleque.21@gmail.com" className="text-blue-600 hover:underline">support@example.com</a>
+            Puedes escribirnos a nuestro correo electrónico de soporte: <a href="mailto:leonardoyarleque.21@gmail.com" className="text-blue-600 hover:underline">oasis@oasis.com</a>
           </p>
           <p className="text-base">
             También puedes encontrarnos en nuestras redes sociales:
